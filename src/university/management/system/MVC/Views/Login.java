@@ -6,8 +6,8 @@
 package university.management.system.MVC.Views;
 
 
-import university.management.system.conn;
-import university.management.system.Project;
+import university.management.system.MVC.controllers.conn;
+import university.management.system.MVC.controllers.Project;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;

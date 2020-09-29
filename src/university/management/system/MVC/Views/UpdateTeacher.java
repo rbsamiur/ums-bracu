@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package university.management.system.MVC.Views;
-
-
-import university.management.system.conn;
-import university.management.system.Project;
+import university.management.system.MVC.Models.Teacher;
+import university.management.system.MVC.controllers.Project;
+import university.management.system.MVC.controllers.TeacherController;
 
 import java.awt.*;
 import java.sql.*;
@@ -21,7 +20,7 @@ public class UpdateTeacher implements ActionListener{
     JTextField t,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
     JButton b,b1,b2; 
     String id_emp;
-
+    TeacherController tcr=new TeacherController();
     public UpdateTeacher(){
         f=new JFrame("Update Teacher details");
         f.setSize(900,650);
@@ -197,9 +196,20 @@ public class UpdateTeacher implements ActionListener{
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource()==b){
             try{
-                conn con = new conn();
-                String str = "update teacher set name='"+t1.getText()+"',fathers_name='"+t2.getText()+"',age='"+t3.getText()+"', dob='"+t4.getText()+"',address='"+t5.getText()+"',phone='"+t6.getText()+"',email='"+t7.getText()+"',class_x='"+t8.getText()+"',class_xii='"+t9.getText()+"',aadhar='"+t10.getText()+"', emp_id = '"+t11.getText()+"',course='"+t13.getText()+"',dept='"+t14.getText()+"' where emp_id='"+t12.getText()+"'";
-                con.s.executeUpdate(str);
+                String a=t1.getText();
+                String bb=t2.getText();
+                String c=t3.getText();
+                String d=t4.getText();
+                String e=t5.getText();
+                String ff=t6.getText();
+                String g=t7.getText();
+                String h=t8.getText();
+                String i=t9.getText();
+                String j=t10.getText();
+                String k=t13.getText();
+                String l=t14.getText();
+                String m=t12.getText();
+                tcr.update(a,bb,c,d,e,ff,g,h,i,j,k,l,m);
                 JOptionPane.showMessageDialog(null,"successfully updated");
                 f.setVisible(false);
                 new TeacherDetails().setVisible(true);
@@ -213,9 +223,8 @@ public class UpdateTeacher implements ActionListener{
         }
         if(ae.getSource() == b2){
             try{
-                conn con = new conn();
-                String str = "select * from teacher where emp_id = '"+t12.getText()+"'";
-                ResultSet rs = con.s.executeQuery(str);
+                String aa=t12.getText();
+                ResultSet rs = tcr.getSpecific(aa);
 
                 if(rs.next()){
                     f.setVisible(true);

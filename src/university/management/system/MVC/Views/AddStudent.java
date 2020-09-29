@@ -1,7 +1,8 @@
 package university.management.system.MVC.Views;
+import university.management.system.MVC.controllers.Project;
+import university.management.system.MVC.Models.Student;
+import university.management.system.MVC.controllers.StudentController;
 
-import university.management.system.conn;
-import university.management.system.Project;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -207,10 +208,10 @@ public class AddStudent implements ActionListener{
         
         if(ae.getSource() == b){
             try{
-                conn cc = new conn();
-                String q = "insert into student values('"+a+"','"+bb+"','"+c+"','"+d+"','"+e+"','"+ff+"','"+g+"','"+h+"','"+i+"','"+j+"','"+k+"','"+l+"','"+m+"')";
-                cc.s.executeUpdate(q);
+                StudentController st=new StudentController();
+                st.add(a,bb,c,d,e,ff,g,h,i,j,k,l,m);
                 JOptionPane.showMessageDialog(null,"Student Details Inserted Successfully");
+
                 f.setVisible(false);
             }catch(Exception ee){
                 System.out.println("The error is:"+ee);

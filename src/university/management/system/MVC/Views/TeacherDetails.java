@@ -8,7 +8,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-import university.management.system.conn;
+import university.management.system.MVC.Models.Teacher;
+import university.management.system.MVC.controllers.TeacherController;
 
 public class TeacherDetails extends JFrame implements ActionListener{
  
@@ -19,6 +20,7 @@ public class TeacherDetails extends JFrame implements ActionListener{
     String x[] = {"Name","Father's Name","Age","Date of Birth","Address","Phone","Email","Class X(%)", "Class XII(%)", "Aadhar No","Course","Department", "Employee Id"};
     String y[][] = new String[20][13];
     int i=0, j=0;
+    TeacherController tcr=new TeacherController();
     public TeacherDetails(){
         super("Teacher Details");
         setSize(1260,650);
@@ -68,9 +70,7 @@ public class TeacherDetails extends JFrame implements ActionListener{
         
         
         try{
-            conn c1  = new conn();
-            String s1 = "select * from teacher";
-            ResultSet rs  = c1.s.executeQuery(s1);
+            ResultSet rs  = tcr.get();
             while(rs.next()){
                 y[i][j++]=rs.getString("name");
                 y[i][j++]=rs.getString("fathers_name");
@@ -103,14 +103,10 @@ public class TeacherDetails extends JFrame implements ActionListener{
         b1.addActionListener(this);
     }
     public void actionPerformed(ActionEvent ae){
-        
-        conn c1 = new conn();
-    
         if(ae.getSource() == b1){
             try{
                 String a = t2.getText();
-                String q = "delete from teacher where emp_id = '"+a+"'";
-                c1.s.executeUpdate(q);
+                tcr.delete(a);
                 this.setVisible(false);
                 new TeacherDetails().setVisible(true);
             }catch(Exception e){}

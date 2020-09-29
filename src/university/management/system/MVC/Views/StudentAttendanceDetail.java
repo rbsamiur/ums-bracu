@@ -8,7 +8,9 @@ package university.management.system.MVC.Views;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.event.*;
-import university.management.system.conn;
+
+import university.management.system.MVC.controllers.StudentController;
+
 
 public class StudentAttendanceDetail extends JFrame implements ActionListener{
   
@@ -24,9 +26,10 @@ public class StudentAttendanceDetail extends JFrame implements ActionListener{
         setLocation(450,150);
 
         try{
-            String q="select * from attendance_student";
-            conn c1=new conn();
-            ResultSet rs=c1.s.executeQuery(q);
+            StudentController st=new StudentController();
+            ResultSet rs= st.AttendanceGet();
+
+
             while(rs.next()){
                 d[i][j++]=rs.getString("rollno");
                 d[i][j++]=rs.getString("Date");

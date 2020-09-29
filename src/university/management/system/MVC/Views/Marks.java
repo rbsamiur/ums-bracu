@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package university.management.system.MVC.Views;
+import university.management.system.MVC.Models.courseMarks;
 
-import university.management.system.conn;
 import java.awt.*;
 import javax.swing.*;
 import java.sql.*;
@@ -36,12 +36,13 @@ public class Marks extends JFrame{
    
    public void mark(String s){
     try{
-           conn c = new conn();
-           
+           courseMarks cm=new courseMarks();
+
            t1.setText("\tResult of Examination\n\nSubject\n");
-           
-           ResultSet rs1 = c.s.executeQuery("select * from subject where rollno="+s);
-           
+
+           String sql="select * from subject where rollno="+s;
+
+           ResultSet rs1 = cm.getMarks(sql);
            if(rs1.next()){
                t1.append("\n\t"+rs1.getString("subject1"));
                t1.append("\n\t"+rs1.getString("subject2"));
@@ -51,9 +52,10 @@ public class Marks extends JFrame{
                t1.append("\n-----------------------------------------");
                t1.append("\n");
            }
+
+           String sql2="select * from marks where rollno="+s;
            
-           ResultSet rs2 = c.s.executeQuery("select * from marks where rollno="+s);
-           
+           ResultSet rs2 = cm.getMarks(sql2);
            if(rs2.next()){
                t1.append("\nMarks\n\n\t"+rs2.getString("marks1"));
                t1.append("\n\t"+rs2.getString("marks2"));

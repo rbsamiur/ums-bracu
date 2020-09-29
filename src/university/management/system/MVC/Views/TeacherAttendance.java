@@ -1,6 +1,6 @@
 package university.management.system.MVC.Views;
+import university.management.system.MVC.controllers.TeacherController;
 
-import university.management.system.conn;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
@@ -12,14 +12,14 @@ public class TeacherAttendance extends JFrame implements ActionListener{
     JTextField t1,t2,t3,t4,t5,t6,t7;
     JButton b1,b2;
     Choice c2,fh,sh;
-    
+    TeacherController tcr=new TeacherController();
     public TeacherAttendance(){
        
         setLayout(new GridLayout(4,2,50,50));
         c2 = new Choice();
         try{
-            conn c = new conn();
-            ResultSet rs = c.s.executeQuery("select * from teacher");
+
+            ResultSet rs = tcr.get();
             while(rs.next()){
                 c2.add(rs.getString("emp_id"));    
             }
@@ -76,11 +76,8 @@ public class TeacherAttendance extends JFrame implements ActionListener{
         String s = sh.getSelectedItem();
         String dt = new java.util.Date().toString();
         String id=c2.getSelectedItem();
-        String qry = "insert into attendance_teacher values("+ id +",'"+dt+"','"+f+"','"+s+"')";
-       
         try{
-            conn c1 = new conn();
-            c1.s.executeUpdate(qry);
+            tcr.AttendanceSet(id,dt,f,s);
             JOptionPane.showMessageDialog(null,"Attendance confirmed");
             this.setVisible(false);
         }catch(Exception ee){

@@ -1,13 +1,12 @@
-
 package university.management.system.MVC.Views;
 
-import university.management.system.conn;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.sql.*;
 import java.awt.event.*;
 import net.proteanit.sql.DbUtils;
+import university.management.system.MVC.controllers.ExamController;
 
 public class ExaminationDetails extends JFrame implements ActionListener{
 
@@ -19,15 +18,9 @@ public class ExaminationDetails extends JFrame implements ActionListener{
    
     public void Book() {
         try {
-            conn con = new conn();
-            String sql = "select * from student";
-            PreparedStatement st = con.c.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-
+            ExamController e=new ExamController();
+            ResultSet rs = e.get();
             table.setModel(DbUtils.resultSetToTableModel(rs));
-            rs.close();
-            st.close();
-            con.c.close();
         } catch (Exception e) {}
 
     }
@@ -108,7 +101,6 @@ public class ExaminationDetails extends JFrame implements ActionListener{
    
     public void actionPerformed(ActionEvent ae){
         try{
-            conn con = new conn();
             if(ae.getSource() == b1){            
                 new Marks(search.getText()).setVisible(true);
                 this.setVisible(false);

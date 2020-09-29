@@ -1,7 +1,8 @@
 package university.management.system.MVC.Views;
 
-import university.management.system.conn;
-import university.management.system.Project;
+import university.management.system.MVC.controllers.Project;
+import university.management.system.MVC.controllers.TeacherController;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -207,9 +208,9 @@ public class AddTeacher implements ActionListener{
         
         if(ae.getSource() == b){
             try{
-                conn cc = new conn();
-                String q = "insert into teacher values('"+a+"','"+bb+"','"+c+"','"+d+"','"+e+"','"+ff+"','"+g+"','"+h+"','"+i+"','"+j+"','"+k+"','"+l+"','"+m+"')";
-                cc.s.executeUpdate(q);
+
+                TeacherController tch=new TeacherController();
+                tch.add(a,bb,c,d,e,ff,g,h,i,j,k,l,m);
                 JOptionPane.showMessageDialog(null,"Teacher Details Inserted Successfully");
                 f.setVisible(false);
                 

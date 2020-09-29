@@ -12,7 +12,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.sql.*;
 
-import university.management.system.conn;
+import university.management.system.MVC.controllers.StudentController;
 
 public class StudentDetails extends JFrame implements ActionListener{
  
@@ -23,6 +23,7 @@ public class StudentDetails extends JFrame implements ActionListener{
     String x[] = {"Name","Father's Name","Age","Date of Birth","Address","Phone","Email","Class X(%)", "Class XII(%)", "Aadhar No","Roll No","Course","Branch"};
     String y[][] = new String[20][13];
     int i=0, j=0;
+    StudentController st=new StudentController();
     public StudentDetails(){
         super("Student Details");
         setSize(1260,650);
@@ -72,9 +73,7 @@ public class StudentDetails extends JFrame implements ActionListener{
         
         
         try{
-            conn c1  = new conn();
-            String s1 = "select * from student";
-            ResultSet rs  = c1.s.executeQuery(s1);
+            ResultSet rs  = st.get();
             while(rs.next()){
                 y[i][j++]=rs.getString("name");
                 y[i][j++]=rs.getString("fathers_name");
@@ -107,14 +106,11 @@ public class StudentDetails extends JFrame implements ActionListener{
         b1.addActionListener(this);
     }
     public void actionPerformed(ActionEvent ae){
-        
-        conn c1 = new conn();
     
         if(ae.getSource() == b1){
             try{
                 String a = t2.getText();
-                String q = "delete from student where rollno = '"+a+"'";
-                c1.s.executeUpdate(q);
+                st.delete(a);
                 this.setVisible(false);
                 new StudentDetails().setVisible(true);
             }catch(Exception e){}

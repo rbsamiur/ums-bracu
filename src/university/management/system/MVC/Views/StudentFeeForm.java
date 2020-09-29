@@ -5,7 +5,8 @@
  */
 package university.management.system.MVC.Views;
 
-import university.management.system.conn;
+import university.management.system.MVC.Models.Student;
+import university.management.system.MVC.controllers.conn;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -19,7 +20,7 @@ public class StudentFeeForm extends JFrame implements ActionListener{
     private JComboBox comboBox, comboBox_1, comboBox_2, comboBox_3;
     JButton b1,b2;
     Choice c1;
-
+Student stu=new Student();
     public static void main(String[] args) {
         new StudentFeeForm().setVisible(true);
     }
@@ -39,8 +40,8 @@ public class StudentFeeForm extends JFrame implements ActionListener{
 	
         
         try{
-            conn c = new conn();
-            ResultSet rs = c.s.executeQuery("select * from student");
+            String str="select * from student";
+            ResultSet rs = stu.getRoll(str);
             while(rs.next()){
                 c1.add(rs.getString("rollno"));
             }
@@ -100,8 +101,8 @@ public class StudentFeeForm extends JFrame implements ActionListener{
 	contentPane.add(t3);
         
         try{
-            conn c = new conn();
-            ResultSet rs = c.s.executeQuery("select * from student where rollno = '"+c1.getSelectedItem()+"'");
+			String str="select * from student where rollno = '"+c1.getSelectedItem()+"'";
+            ResultSet rs = stu.getStudent(str);
             while(rs.next()){
                 t2.setText(rs.getString("name"));
                 t3.setText(rs.getString("fathers_name"));

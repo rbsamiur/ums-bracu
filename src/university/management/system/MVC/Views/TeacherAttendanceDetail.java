@@ -8,7 +8,10 @@ package university.management.system.MVC.Views;
 import java.sql.*;
 import javax.swing.*;
 import java.awt.event.*;
-import university.management.system.conn;
+
+import university.management.system.MVC.Models.Teacher;
+import university.management.system.MVC.controllers.TeacherController;
+import university.management.system.MVC.controllers.conn;
 
 public class TeacherAttendanceDetail extends JFrame implements ActionListener{
   
@@ -17,16 +20,14 @@ public class TeacherAttendanceDetail extends JFrame implements ActionListener{
     String h[]={"Employee id","Date Time","First Half","Second Half"};
     String d[][]=new String[15][4];  
     int i=0,j=0;
-    
+    TeacherController tcr=new TeacherController();
     public TeacherAttendanceDetail(){
         super("View Teachers Attendance");
         setSize(800,300);
         setLocation(450,150);
 
         try{
-            String q="select * from attendance_teacher";
-            conn c1=new conn();
-            ResultSet rs=c1.s.executeQuery(q);
+            ResultSet rs=tcr.AttendanceGet();
             while(rs.next()){
                 d[i][j++]=rs.getString("emp_id");
                 d[i][j++]=rs.getString("Date");
