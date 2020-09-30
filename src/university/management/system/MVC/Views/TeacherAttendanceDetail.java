@@ -9,9 +9,7 @@ import java.sql.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-import university.management.system.MVC.Models.Teacher;
 import university.management.system.MVC.controllers.TeacherController;
-import university.management.system.MVC.controllers.conn;
 
 public class TeacherAttendanceDetail extends JFrame implements ActionListener{
   

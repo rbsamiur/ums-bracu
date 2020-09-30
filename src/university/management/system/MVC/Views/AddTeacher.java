@@ -1,6 +1,6 @@
 package university.management.system.MVC.Views;
 
-import university.management.system.MVC.controllers.Project;
+import university.management.system.Project;
 import university.management.system.MVC.controllers.TeacherController;
 
 import java.awt.*;

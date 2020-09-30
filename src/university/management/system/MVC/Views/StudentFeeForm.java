@@ -6,7 +6,7 @@
 package university.management.system.MVC.Views;
 
 import university.management.system.MVC.Models.Student;
-import university.management.system.MVC.controllers.conn;
+import university.management.system.conn;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;

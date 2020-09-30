@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package university.management.system.MVC.Views;
-import university.management.system.MVC.Models.courseMarks;
+import university.management.system.MVC.Models.CourseMarks;
+import university.management.system.MVC.controllers.MarksController;
 
 import java.awt.*;
 import javax.swing.*;
@@ -36,13 +37,13 @@ public class Marks extends JFrame{
    
    public void mark(String s){
     try{
-           courseMarks cm=new courseMarks();
-
+           CourseMarks cm=new CourseMarks();
+        MarksController m=new MarksController();
            t1.setText("\tResult of Examination\n\nSubject\n");
 
-           String sql="select * from subject where rollno="+s;
 
-           ResultSet rs1 = cm.getMarks(sql);
+
+           ResultSet rs1 = m.getMarks(s);
            if(rs1.next()){
                t1.append("\n\t"+rs1.getString("subject1"));
                t1.append("\n\t"+rs1.getString("subject2"));

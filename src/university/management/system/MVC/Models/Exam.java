@@ -1,10 +1,9 @@
 package university.management.system.MVC.Models;
 
-import university.management.system.MVC.controllers.conn;
+import university.management.system.conn;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.concurrent.ExecutionException;
 
 public class Exam {
     conn con = new conn();

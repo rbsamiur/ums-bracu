@@ -1,4 +1,4 @@
-package university.management.system.MVC.controllers;
+package university.management.system;
 
 import java.sql.*;  
 

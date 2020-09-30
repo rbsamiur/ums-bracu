@@ -1,5 +1,5 @@
 package university.management.system.MVC.Models;
-import university.management.system.MVC.controllers.conn;
+import university.management.system.conn;
 
 import java.sql.ResultSet;
 
